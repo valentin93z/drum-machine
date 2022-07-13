@@ -1,8 +1,87 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  background-color: #fcfcfc;
+  color: #222222;
+  display: grid;
+  align-items: center;
+  justify-content: center;
 }
 
 .App {
+  width: 600px;
+  height: 300px;
   text-align: center;
+  border: 1px solid black;
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+.drum-keyboard {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-gap: 10px;
+  padding: 20px;
+}
+
+.drum-pad {
+  border: 1px solid black;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.active-pad {
+  background-color: orange;
+}
+
+.switcher {
+  width: 55px;
+  height: 25px;
+  background-color: #8b8b8b;
+  margin: 0 auto;
+}
+
+.switch {
+  width: 50%;
+  height: 100%;
+  background-color: blue;
+}
+
+.display {
+  width: 200px;
+  background-color: #8b8b8b;
+  margin: 0 auto;
+  margin-top: 20px;
+  padding: 10px;
+}
+
+.control-power {
+  margin-top: 40px;
+}
+
+.control-volume {
+  margin-top: 20px;
+}
+
+.control-bank {
+  margin-top: 20px;
+}
+
+@media screen and (max-width: 620px) {
+
+  .App {
+    width: 300px;
+    height: 600px;
+    grid-template-columns: auto;
+    grid-template-rows: 298px;
+  }
+
 }
