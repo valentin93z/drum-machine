@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -7,18 +9,20 @@
 body {
   width: 100vw;
   height: 100vh;
-  background-color: #fcfcfc;
-  color: #222222;
+  background-color: #A1C6E0;
   display: grid;
   align-items: center;
   justify-content: center;
+  font-family: "Roboto", sans-serif;
 }
 
 .App {
   width: 600px;
   height: 300px;
   text-align: center;
-  border: 1px solid black;
+  border: none;
+  border-radius: 20px;
+  background-color: #001E34;
   display: grid;
   grid-template-columns: 50% 50%;
 }
@@ -31,48 +35,117 @@ body {
 }
 
 .drum-pad {
-  border: 1px solid black;
+  border: none;
+  border-radius: 10px;
+  background-color: #002B4A;
+  color: #FFFFFF;
   display: grid;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.drum-pad:active {
+  outline: none;
 }
 
 .active-pad {
-  background-color: orange;
+  background-color: #FFA800;
 }
 
 .switcher {
   width: 55px;
   height: 25px;
-  background-color: #8b8b8b;
+  background-color: #002B4A;
   margin: 0 auto;
 }
 
 .switch {
   width: 50%;
   height: 100%;
-  background-color: blue;
+  background-color: #FFA800;
+  cursor: pointer;
 }
 
 .display {
   width: 200px;
-  background-color: #8b8b8b;
+  height: 40px;
+  background-color: #002B4A;
+  color: #FFFFFF;
+  border-radius: 5px;
   margin: 0 auto;
   margin-top: 20px;
-  padding: 10px;
+  padding: 8px 0;
+  overflow: hidden;
+  font-size: 20px;
 }
 
 .control-power {
   margin-top: 40px;
+  color:#FFFFFF;
+  font-size: 20px;
 }
 
 .control-volume {
   margin-top: 20px;
 }
 
+input {
+  -webkit-appearance: none;
+  width: 200px;
+  height: 5px;
+  outline: none;
+  border: none;
+  border-radius: 2px;
+  background-color: #002B4A;
+  cursor: pointer;
+}
+
+input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 10px;
+  height: 25px;
+  background-color: #FFA800;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+input::-moz-range-thumb {
+  width: 10px;
+  height: 25px;
+  background-color: #FFA800;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
 .control-bank {
   margin-top: 20px;
+  color:#FFFFFF;
+  font-size: 20px;
+}
+
+.switcher {
+  background-color: e5e5e5;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
+.switch {
+  background-color: orange;
+  border: none;
+  border-radius: 5px;
+}
+
+.control-bank-first-group {
+  float: left;
+}
+
+.control-bank-second-group {
+  float: right;
 }
 
 @media screen and (max-width: 620px) {
