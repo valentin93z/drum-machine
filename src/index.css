@@ -55,6 +55,10 @@ body {
   background-color: #FFA800;
 }
 
+.unactive-pad {
+  background-color: gray;
+}
+
 .switcher {
   width: 55px;
   height: 25px;
@@ -86,6 +90,14 @@ body {
   margin-top: 40px;
   color:#FFFFFF;
   font-size: 20px;
+}
+
+.power-on {
+  float: right;
+}
+
+.power-off {
+  float: left;
 }
 
 .control-volume {

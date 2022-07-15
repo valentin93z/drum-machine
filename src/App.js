@@ -119,12 +119,24 @@ function App() {
   const [volume, setVolume] = useState(0.5);
   const [group, setGroup] = useState("control-bank-first-group");
   const [viewDisplay, setViewDisplay] = useState("");
+  const [power, setPower] = useState("power-on");
+
+  const powerSwitcher = () => {
+    if (power === "power-on") {
+      setPower("power-off");
+      setViewDisplay("Power: Off");
+    } else {
+      setPower("power-on");
+      setViewDisplay("Power: On");
+    }
+  }
 
   const groupSwitcher = () => {
-    if (group === "control-bank-first-group") {
+    if (group === "control-bank-first-group" && power === "power-on") {
       setGroup("control-bank-second-group");
       setViewDisplay("Second Sound Group");
-    } else {
+    }
+    else if (group === "control-bank-second-group" && power === "power-on") {
       setGroup("control-bank-first-group");
       setViewDisplay("First Sound Group");
     }
@@ -136,13 +148,13 @@ function App() {
     <div className="App" id='drum-machine'>
         <div className='drum-keyboard'>
           {currentGroup.map((sound) => (
-          <Pad key={sound.id} sound={sound} volume={volume} setViewDisplay={setViewDisplay} />))}
+          <Pad key={sound.id} sound={sound} volume={volume} setViewDisplay={setViewDisplay} power={power} />))}
         </div>
         <div className='drum-control'>
           <div className='control-power'>
             <p>Power</p>
             <div className='switcher'>
-              <div className='switch'></div>
+              <div className={`switch ${power}`} onClick={powerSwitcher}></div>
             </div>
           </div>
           <div className='display' id='display'>
@@ -152,8 +164,10 @@ function App() {
             <input 
               type="range"
               onChange={(e) => {
-                setVolume(e.target.value);
-                setViewDisplay("Volume: " + e.target.value * 100 + "%");
+                if (power === "power-on") {
+                  setVolume(e.target.value);
+                  setViewDisplay("Volume: " + Math.round(e.target.value * 100) + "%");
+                }
               }}
               value={volume}
               step="0.01"
@@ -173,9 +187,10 @@ function App() {
 
 
 
-function Pad({ sound, volume, setViewDisplay }) {
+function Pad({ sound, volume, setViewDisplay, power }) {
 
   const [active, setActive] = useState(false);
+  const [unactive, setUnactive] = useState(false);
 
   React.useEffect(() => {
     document.addEventListener("keydown", handleKeydown);
@@ -191,17 +206,22 @@ function Pad({ sound, volume, setViewDisplay }) {
   }
 
   const playSound = () => {
-    const audio = document.getElementById(sound.key);
+    if (power === "power-on") {
+      const audio = document.getElementById(sound.key);
     setActive(true);
     setTimeout(() => setActive(false), 200);
     setViewDisplay(sound.id);
     audio.volume = volume;
     audio.currentTime = 0;
     audio.play();
+    } else {
+      setUnactive(true);
+      setTimeout(() => setUnactive(false), 200);
+    }
   }
 
   return (
-    <div className={`drum-pad ${active && "active-pad"}`} onClick={playSound}>
+    <div className={`drum-pad ${active && "active-pad"} ${unactive && "unactive-pad"}`} onClick={playSound}>
       <audio className='clip' id={sound.key} src={sound.url} />
       {sound.key}
     </div>
