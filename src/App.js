@@ -221,7 +221,7 @@ function Pad({ sound, volume, setViewDisplay, power }) {
   }
 
   return (
-    <div className={`drum-pad ${active && "active-pad"} ${unactive && "unactive-pad"}`} onClick={playSound}>
+    <div className={`drum-pad ${active && "active-pad"} ${unactive && "unactive-pad"}`} id={sound.id} onClick={playSound}>
       <audio className='clip' id={sound.key} src={sound.url} />
       {sound.key}
     </div>
